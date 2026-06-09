@@ -1,4 +1,3 @@
-import React from "react";
 import "./LoadingScreen.css";
 import person from "../assets/person.svg";
 import minivan from "../assets/mini-van.svg";

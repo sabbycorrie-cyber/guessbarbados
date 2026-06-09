@@ -1,118 +1,133 @@
-/* Authentication component */
-import {useState} from "react";
+/* === Authentication component ===
+   Login / sign-up with localStorage accounts, plus guest play.
+   On success the ZR loading screen plays before entering the game. */
+import { useState } from "react";
 import LoadingScreen from "./LoadingScreen";
-import BackgroundIntro from "../assets/intro-bg-blur.png"; 
 
-function Login({ setUser }) {
+/* Accounts are stored as gb_user_<username> so they can't
+   collide with other localStorage keys */
+const USER_PREFIX = "gb_user_";
 
-    /* Form state */
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [isLogin, setIsLogin] = useState(true);
-    const [loading, setLoading] = useState(false);
+function Login({ onLogin }) {
+  /* Form state */
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    /* Form form submission */
-    const handleSubmit = (e) => {
-        // Stop default form reload
-        e.preventDefault();
+  const finishLogin = (loggedInUser) => {
+    setLoading(true);
+    // brief ZR boarding animation before entering the game
+    setTimeout(() => onLogin(loggedInUser), 2200);
+  };
 
-        // Validate required fields
-        if (!username || !password) {
-            alert("Please fill in both fields");
-            return;
-        }
+  /* Handle form submission for both login and sign-up */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
 
-        /* Login flow */
-        if (isLogin) {
-            // Retrieve saved user
-            const storedUser = JSON.parse(localStorage.getItem(username));
-
-            // Verify login credentials
-            if (storedUser && storedUser.password === password) {
-                setLoading(true);
-
-                setTimeout(() => {
-                    setUser(storedUser);
-                    setLoading(false);
-                }, 3000);
-            } else {
-                alert("Incorrect username or password");
-            }
-        } else {
-            /* Sign up flow */
-            const newUser = { username, password, email };
-            localStorage.setItem(username, JSON.stringify(newUser));
-
-            setLoading(true);
-
-            setTimeout(() => {
-                setUser(newUser);
-                setLoading(false);
-            }, 3000);
-        }
-    };
-
-    if (loading) {
-        return <LoadingScreen />;
+    // Validate required fields
+    if (!username.trim() || !password) {
+      setError("Please fill in both fields");
+      return;
     }
 
-    /* Render login form */
-    return (
-        <div className="auth-container"
-                        style={{
-                            backgroundImage: `url(${BackgroundIntro})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                            minHeight: "100vh",
-                        }}
-                        >
-            <div className="auth-card">
-            <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+    const storageKey = USER_PREFIX + username.trim().toLowerCase();
 
-            <form onSubmit={handleSubmit} className="form">
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+    /* Login flow — verify saved credentials */
+    if (isLogin) {
+      const storedUser = JSON.parse(localStorage.getItem(storageKey));
+      if (storedUser && storedUser.password === password) {
+        finishLogin(storedUser);
+      } else {
+        setError("Incorrect username or password");
+      }
+    } else {
+      /* Sign-up flow — reject taken usernames */
+      if (localStorage.getItem(storageKey)) {
+        setError("That username is already taken");
+        return;
+      }
+      const newUser = { username: username.trim(), password, email };
+      localStorage.setItem(storageKey, JSON.stringify(newUser));
+      finishLogin(newUser);
+    }
+  };
 
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+  /* Guest mode — no account, scores save under "Guest" */
+  const playAsGuest = () => {
+    finishLogin({ username: "Guest", guest: true });
+  };
 
-                {!isLogin && (
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    />
-                )}
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
-                <button type="submit">
-                    {isLogin ? "Login" : "Sign Up"}
-                </button>
-            </form>
+  /* Render login / sign-up form */
+  return (
+    <div className="auth-screen screen">
+      <div className="auth-card glass rise">
+        <h2 className="card-title">{isLogin ? "Welcome back" : "Join de crew"}</h2>
+        <p className="card-subtitle">
+          {isLogin
+            ? "Log in to keep yuh spot on de leaderboard"
+            : "Sign up so de island knows yuh name"}
+        </p>
 
-            <p onClick={() => setIsLogin(!isLogin)}>
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            autoComplete="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-                {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
-            </p>
-            </div>
-        </div>
-    );
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            autoComplete={isLogin ? "current-password" : "new-password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {!isLogin && (
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email (optional)"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          )}
+
+          {error && <p className="form-error">{error}</p>}
+
+          <button type="submit" className="btn btn-gold">
+            {isLogin ? "Login" : "Sign Up"}
+          </button>
+        </form>
+
+        <button className="link-button" onClick={() => { setIsLogin(!isLogin); setError(""); }}>
+          {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
+        </button>
+
+        <div className="divider"><span>or</span></div>
+
+        <button className="btn btn-ghost" onClick={playAsGuest}>
+          Play as guest
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

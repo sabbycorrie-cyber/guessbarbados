@@ -1,58 +1,30 @@
-/* Answer selection component */
-import { useState } from "react";
-
-function Answers(props) {
-const { options = [], correctAnswer, onAnswer } = props;
-const [selected, setSelected] = useState(null);
-
-// Sound effects
-const correctSound = new Audio("/sounds/correct.mp3");
-const wrongSound = new Audio("/sounds/wrong.mp3");
-
-const handleClick = (option) => {
-    if (selected) return; // ignore if already selected
-    setSelected(option);
-
-    if (option?.trim().toLowerCase() === correctAnswer?.trim().toLowerCase() 
-    ) {
-        correctSound.currentTime = 0;
-        correctSound.play();
-    } else {
-        wrongSound.currentTime = 0;
-        wrongSound.play();
-    }
-
-    // Delay next round feedback
-    setTimeout(() => {
-    onAnswer(option);
-    setSelected(null);
-    }, 1500);
-};
-
-return (
-    <div className="answer-container">
-        <div className="answers-grid">
-            {options.map((option, index) => {
-                let buttonClass = "answer-button";
-
-                if (selected) {
-                    if (option === correctAnswer) buttonClass += " correct";
-                    else if (option === selected) buttonClass += " wrong";
-                }
-
-                return (
-                    <button
-                        key={index}
-                        className={buttonClass}
-                        onClick={() => handleClick(option)}
-                    >
-                        {option}
-                    </button>
-                );
-            })}
-        </div>
+/* === Answer grid ===
+   Purely presentational — Game owns the logic, timer and sounds.
+   After a guess (`revealed`) the correct option turns green, the
+   player's wrong pick turns red and the rest fade out. */
+function Answers({ options, correctAnswer, selected, revealed, disabled, onSelect }) {
+  return (
+    <div className={`answers-grid ${options.length > 4 ? "answers-six" : ""}`}>
+      {options.map((option) => {
+        let cls = "answer-button";
+        if (revealed) {
+          if (option === correctAnswer) cls += " correct";
+          else if (option === selected) cls += " wrong";
+          else cls += " faded";
+        }
+        return (
+          <button
+            key={option}
+            className={cls}
+            disabled={disabled}
+            onClick={() => onSelect(option)}
+          >
+            {option}
+          </button>
+        );
+      })}
     </div>
-);
+  );
 }
 
 export default Answers;
