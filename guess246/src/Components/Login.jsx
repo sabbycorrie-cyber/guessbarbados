@@ -1,5 +1,7 @@
 /* Authentication component */
 import {useState} from "react";
+import LoadingScreen from "./LoadingScreen";
+import BackgroundIntro from "../assets/intro-bg-blur.png"; 
 
 function Login({ setUser }) {
 
@@ -8,52 +10,64 @@ function Login({ setUser }) {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [isLogin, setIsLogin] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     /* Form form submission */
     const handleSubmit = (e) => {
-        
         // Stop default form reload
         e.preventDefault();
 
         // Validate required fields
         if (!username || !password) {
             alert("Please fill in both fields");
-        return;
+            return;
         }
 
         /* Login flow */
         if (isLogin) {
-        
-        // Retrieve saved user
-        const storedUser = JSON.parse(localStorage.getItem(username));
+            // Retrieve saved user
+            const storedUser = JSON.parse(localStorage.getItem(username));
 
-        // Verify login credentials
-        if (storedUser && storedUser.password === password) {
-                
-                //Set active user
-                setUser(storedUser);
-                } else {
-                    alert("Incorrect username or password");
-                }
-        }
+            // Verify login credentials
+            if (storedUser && storedUser.password === password) {
+                setLoading(true);
 
-        /* Sign up flow */
-        else {
-
-            // Create user data
+                setTimeout(() => {
+                    setUser(storedUser);
+                    setLoading(false);
+                }, 3000);
+            } else {
+                alert("Incorrect username or password");
+            }
+        } else {
+            /* Sign up flow */
             const newUser = { username, password, email };
-
-            // Store user locally
             localStorage.setItem(username, JSON.stringify(newUser));
 
-            // Start user session
-            setUser(newUser);
+            setLoading(true);
+
+            setTimeout(() => {
+                setUser(newUser);
+                setLoading(false);
+            }, 3000);
         }
     };
 
+    if (loading) {
+        return <LoadingScreen />;
+    }
+
     /* Render login form */
     return (
-        <div className="auth-container">
+        <div className="auth-container"
+                        style={{
+                            backgroundImage: `url(${BackgroundIntro})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            minHeight: "100vh",
+                        }}
+                        >
             <div className="auth-card">
             <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 

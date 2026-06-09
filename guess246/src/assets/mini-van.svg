@@ -1,0 +1,131 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 220 120"
+  width="220"
+  height="120"
+>
+
+  <!-- Van Body -->
+  <path
+    d="
+      M25 25
+      H165
+      Q185 25 195 45
+      L205 65
+      V90
+      Q205 105 190 105
+      H30
+      Q15 105 15 90
+      V40
+      Q15 25 25 25
+      Z
+    "
+    fill="white"
+  />
+
+  <!-- Rear Window -->
+  <rect
+    x="30"
+    y="38"
+    width="34"
+    height="26"
+    rx="5"
+    fill="#111"
+  />
+
+  <!-- Middle Window -->
+  <rect
+    x="72"
+    y="38"
+    width="34"
+    height="26"
+    rx="5"
+    fill="#111"
+  />
+
+  <!-- Front Passenger Window -->
+  <rect
+    x="114"
+    y="38"
+    width="34"
+    height="26"
+    rx="5"
+    fill="#111"
+  />
+
+  <!-- Windshield -->
+  <path
+    d="
+      M156 38
+      H180
+      Q187 38 192 48
+      L196 64
+      H165
+      Q156 64 156 55
+      Z
+    "
+    fill="#111"
+  />
+
+  <!-- Vertical Window Dividers -->
+  <line
+    x1="47"
+    y1="42"
+    x2="47"
+    y2="60"
+    stroke="white"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <line
+    x1="89"
+    y1="42"
+    x2="89"
+    y2="60"
+    stroke="white"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <line
+    x1="131"
+    y1="42"
+    x2="131"
+    y2="60"
+    stroke="white"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <!-- Wheel Left -->
+  <circle
+    cx="55"
+    cy="102"
+    r="18"
+    fill="white"
+  />
+
+  <circle
+    cx="55"
+    cy="102"
+    r="8"
+    fill="#111"
+  />
+
+  <!-- Wheel Right -->
+  <circle
+    cx="165"
+    cy="102"
+    r="18"
+    fill="white"
+  />
+
+  <circle
+    cx="165"
+    cy="102"
+    r="8"
+    fill="#111"
+  />
+
+</svg>

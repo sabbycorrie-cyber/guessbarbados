@@ -30,21 +30,27 @@ const handleClick = (option) => {
 };
 
 return (
-    <div>
-    {options.map((option, index) => {
-        let buttonClass = "";
+    <div className="answer-container">
+        <div className="answers-grid">
+            {options.map((option, index) => {
+                let buttonClass = "answer-button";
 
-        if (selected) {
-        if (option === correctAnswer) buttonClass = "correct";
-        else if (option === selected) buttonClass = "wrong";
-        }
+                if (selected) {
+                    if (option === correctAnswer) buttonClass += " correct";
+                    else if (option === selected) buttonClass += " wrong";
+                }
 
-        return (
-        <button key={index} className={buttonClass} onClick={() => handleClick(option)}>
-            {option}
-        </button>
-        );
-    })}
+                return (
+                    <button
+                        key={index}
+                        className={buttonClass}
+                        onClick={() => handleClick(option)}
+                    >
+                        {option}
+                    </button>
+                );
+            })}
+        </div>
     </div>
 );
 }
