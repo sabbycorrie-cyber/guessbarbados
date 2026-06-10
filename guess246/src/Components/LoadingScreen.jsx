@@ -1,6 +1,8 @@
+/* === Login loading screen ===
+   Full-screen "Boarding Your ZR..." moment shown after login,
+   using the shared ZR van animation. */
 import "./LoadingScreen.css";
-import person from "../assets/person.svg";
-import minivan from "../assets/mini-van.svg";
+import ZRLoader from "./ZRLoader.jsx";
 
 function LoadingScreen() {
     return (
@@ -11,21 +13,7 @@ function LoadingScreen() {
             Boarding Your ZR...
         </h1>
 
-        <div className="animation-area">
-
-            <img
-            src={person}
-            alt="Passenger"
-            className="person-icon"
-            />
-
-            <img
-            src={minivan}
-            alt="ZR Van"
-            className="van-icon"
-            />
-
-        </div>
+        <ZRLoader />
 
         <p className="loading-text">
             Finding your seat...
