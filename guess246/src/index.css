@@ -196,9 +196,11 @@ body::before {
   justify-content: center;
   background-image:
     linear-gradient(rgba(3, 11, 31, 0.55), rgba(3, 11, 31, 0.78)),
-    url("./assets/intro-bg.png");
-  background-size: cover;
-  background-position: center top;
+    url("./assets/intro-bg.png"),
+    url("./assets/intro-bg-blur.png");
+  background-size: cover, contain, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
 }
 
 .intro-card {
