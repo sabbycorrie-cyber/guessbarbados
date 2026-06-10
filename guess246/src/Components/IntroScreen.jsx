@@ -5,7 +5,7 @@ function IntroScreen({ onStart, onShowLeaderboard }) {
   return (
     <div className="intro-screen screen">
       <div className="intro-card glass rise">
-        <span className="chip">🇧🇧 De Ultimate Bajan Road Test</span>
+        <span className="chip">De Ultimate Bajan Road Test</span>
 
         <h1 className="intro-title">
           Guess<span className="title-gold">246</span>
