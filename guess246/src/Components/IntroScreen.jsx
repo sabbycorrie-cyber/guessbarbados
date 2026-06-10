@@ -26,7 +26,7 @@ function IntroScreen({ onStart, onShowLeaderboard }) {
           </button>
         </div>
 
-        <p className="credits">Made in Barbados 🌴 by two island explorers</p>
+        <p className="credits">Made by two Bajans 🌴</p>
       </div>
     </div>
   );
