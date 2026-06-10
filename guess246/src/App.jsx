@@ -1,13 +1,16 @@
 /* === Main application component ===
    Owns the screen flow: intro → login → difficulty select → game.
-   Also controls the leaderboard modal and the saved user session. */
-import { useState } from "react";
+   Also controls the leaderboard modal, the saved user session and
+   the hidden admin dashboard (open the site with #admin in the URL). */
+import { useState, useEffect } from "react";
 import IntroScreen from "./Components/IntroScreen.jsx";
 import Login from "./Components/Login.jsx";
 import DifficultySelect from "./Components/DifficultySelect.jsx";
 import Game from "./Components/Game.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
 import Footer from "./Components/Footer.jsx";
+import Admin from "./Components/Admin.jsx";
+import { track } from "./Services/analytics.js";
 
 function App() {
   /* === Session state ===
@@ -22,6 +25,17 @@ function App() {
   const [screen, setScreen] = useState("intro"); // intro | login | difficulty | game
   const [difficulty, setDifficulty] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+  /* === Admin mode ===
+     #admin in the URL opens the founders' dashboard */
+  const [adminMode, setAdminMode] = useState(
+    () => window.location.hash === "#admin"
+  );
+  useEffect(() => {
+    const onHashChange = () => setAdminMode(window.location.hash === "#admin");
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   /* === Navigation handlers === */
 
@@ -46,13 +60,23 @@ function App() {
     setScreen("game");
   };
 
+  // Track when players open the leaderboard
+  const openLeaderboard = () => {
+    track("leaderboard_view", { player: user?.username ?? null });
+    setShowLeaderboard(true);
+  };
+
   /* === Render the active screen === */
+  if (adminMode) {
+    return <Admin onExit={() => (window.location.hash = "")} />;
+  }
+
   return (
     <div className="app">
       {screen === "intro" && (
         <IntroScreen
           onStart={handleStart}
-          onShowLeaderboard={() => setShowLeaderboard(true)}
+          onShowLeaderboard={openLeaderboard}
         />
       )}
 
@@ -62,7 +86,7 @@ function App() {
         <DifficultySelect
           user={user}
           onPick={handlePickDifficulty}
-          onShowLeaderboard={() => setShowLeaderboard(true)}
+          onShowLeaderboard={openLeaderboard}
           onLogout={handleLogout}
         />
       )}

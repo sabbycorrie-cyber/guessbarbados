@@ -3,6 +3,7 @@
    On success the ZR loading screen plays before entering the game. */
 import { useState } from "react";
 import LoadingScreen from "./LoadingScreen";
+import { track, identify } from "../Services/analytics.js";
 
 /* Accounts are stored as gb_user_<username> so they can't
    collide with other localStorage keys */
@@ -40,6 +41,8 @@ function Login({ onLogin }) {
     if (isLogin) {
       const storedUser = JSON.parse(localStorage.getItem(storageKey));
       if (storedUser && storedUser.password === password) {
+        track("user_login", { player: storedUser.username });
+        identify(storedUser.username);
         finishLogin(storedUser);
       } else {
         setError("Incorrect username or password");
@@ -52,12 +55,15 @@ function Login({ onLogin }) {
       }
       const newUser = { username: username.trim(), password, email };
       localStorage.setItem(storageKey, JSON.stringify(newUser));
+      track("user_signup", { player: newUser.username, email: email || null });
+      identify(newUser.username);
       finishLogin(newUser);
     }
   };
 
   /* Guest mode — no account, scores save under "Guest" */
   const playAsGuest = () => {
+    track("guest_play", { player: "Guest" });
     finishLogin({ username: "Guest", guest: true });
   };
 

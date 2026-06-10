@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getStreetViewURL, hasStreetView } from "../Services/streetView.js";
 import { saveScore, getPersonalBest } from "../Services/leaderboard.js";
+import { track } from "../Services/analytics.js";
 import { PLACES, DIFFICULTY, placeLabel } from "../data/places.js";
 import Answers from "./Answers.jsx";
 import Leaderboard from "./Leaderboard.jsx";
@@ -102,7 +103,9 @@ function Game({ user, difficulty, onExit }) {
   useEffect(() => {
     if (startedRef.current) return;
     startedRef.current = true;
+    track("game_start", { player: user?.username ?? "Guest", difficulty });
     loadRound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadRound]);
 
   /* Process player answer (null = time ran out) */
@@ -132,6 +135,18 @@ function Game({ user, difficulty, onExit }) {
     setStreak(newStreak);
     setLastGain(gain);
 
+    /* Every answer is tracked — powers the "toughest spots"
+       table in the admin dashboard */
+    track("round_answer", {
+      player: user?.username ?? "Guest",
+      difficulty,
+      place,
+      selected: option, // null = time ran out
+      correct: isCorrect,
+      secondsLeft: cfg.timer ? secondsLeft : null,
+      round,
+    });
+
     const finalScore = score + gain;
     const finalCorrect = correctCount + (isCorrect ? 1 : 0);
 
@@ -155,6 +170,14 @@ function Game({ user, difficulty, onExit }) {
       difficulty,
       correct: finalCorrect,
       rounds: cfg.rounds,
+    });
+    track("game_over", {
+      player: name,
+      difficulty,
+      score: finalScore,
+      correct: finalCorrect,
+      rounds: cfg.rounds,
+      rank,
     });
     setIsPersonalBest(previousBest === null || finalScore > previousBest);
     setFinalRank(rank);
