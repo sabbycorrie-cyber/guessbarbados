@@ -58,11 +58,35 @@
     top: 14%;
 }
 
-/* Small variant — used inside the in-game round loader */
+/* === Small variant — in-game round loader ===
+   No passenger here: just the ZR driving across the strip.
+   overflow:hidden lets the van enter and leave off-screen. */
 .animation-small {
-    width: min(280px, 70vw);
-    height: 90px;
+    width: min(300px, 76vw);
+    height: 72px;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.van-drive {
+    position: absolute;
+    width: 44%;
+    max-width: 132px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: driveAcross 1.4s linear infinite;
+}
+
+/* Van enters from the left and exits right (it faces right).
+   Keep the 1.4s duration in sync with VAN_DRIVE_MS in ZRLoader.jsx */
+@keyframes driveAcross {
+    from {
+    left: -46%;
+    }
+
+    to {
+    left: 102%;
+    }
 }
 
 .loading-text {
