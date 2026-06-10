@@ -1,4 +1,4 @@
-# GuessBarbados 🇧🇧
+# Guess246
 
 A Barbados geography guessing game built with React, Vite and the Google Street View Static API.
 You're shown a Street View photo from somewhere on the island — guess the road and parish before the clock runs out.
