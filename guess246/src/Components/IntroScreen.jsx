@@ -26,7 +26,7 @@ function IntroScreen({ onStart, onShowLeaderboard }) {
           </button>
         </div>
 
-        <p className="credits">Made by two Bajans 🌴</p>
+        <p className="credits">Made by two mauby drinkers 🍻</p>
       </div>
     </div>
   );
