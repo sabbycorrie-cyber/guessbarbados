@@ -10,6 +10,7 @@ import { track } from "../Services/analytics.js";
 import { PLACES, DIFFICULTY, placeLabel } from "../data/places.js";
 import Answers from "./Answers.jsx";
 import Leaderboard from "./Leaderboard.jsx";
+import ZRLoader from "./ZRLoader.jsx";
 
 /* How long the right/wrong reveal stays on screen between rounds */
 const REVEAL_MS = 1800;
@@ -294,7 +295,7 @@ function Game({ user, difficulty, onExit }) {
           <span className="streetview-tag">📍 Somewhere in Barbados…</span>
           {phase === "loading" ? (
             <div className="streetview-loading">
-              <span className="spinner" />
+              <ZRLoader small />
               <p>Driving to de next spot…</p>
             </div>
           ) : (

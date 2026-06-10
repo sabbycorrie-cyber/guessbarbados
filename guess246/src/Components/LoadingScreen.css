@@ -1,3 +1,8 @@
+/* === Loading screen + ZR van animation ===
+   The animation area scales with the viewport (never wider than the
+   screen), and the walk path uses percentages so the person always
+   boards the van no matter the width. */
+
 .loading-screen {
     position: fixed;
     inset: 0;
@@ -14,36 +19,50 @@
 
 .loading-content {
     text-align: center;
+    width: 100%;
+    padding: 0 16px;
 }
 
 .loading-title {
     color: white;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
     font-weight: 700;
     margin-bottom: 50px;
 }
 
+/* === Animation area ===
+   Full size: up to 500px wide, capped at 88vw so the whole van is
+   always visible and centered on mobile. */
 .animation-area {
     position: relative;
-    width: 500px;
-    height: 180px;
+    width: min(500px, 88vw);
+    height: clamp(120px, 36vw, 180px);
     margin: 0 auto;
 }
 
 .person-icon {
     position: absolute;
-    width: 60px;
+    width: 12%;
+    max-width: 60px;
     left: 0;
-    top: 55px;
+    top: 30%;
 
     animation: walkToVan 2.5s ease-in-out infinite;
 }
 
 .van-icon {
     position: absolute;
-    width: 240px;
+    width: 48%;
+    max-width: 240px;
     right: 0;
-    top: 25px;
+    top: 14%;
+}
+
+/* Small variant — used inside the in-game round loader */
+.animation-small {
+    width: min(280px, 70vw);
+    height: 90px;
+    margin: 0 auto;
 }
 
 .loading-text {
@@ -53,6 +72,8 @@
     opacity: 0.9;
 }
 
+/* Person walks across and boards the van (percentages keep the
+   path correct at every screen width) */
 @keyframes walkToVan {
     0% {
     left: 0;
@@ -60,12 +81,12 @@
     }
 
     70% {
-    left: 210px;
+    left: 42%;
     opacity: 1;
     }
 
     100% {
-    left: 240px;
+    left: 48%;
     opacity: 0;
     }
 }
