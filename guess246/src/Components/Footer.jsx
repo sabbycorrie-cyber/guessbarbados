@@ -43,7 +43,7 @@ const MODALS = {
     body: (
       <>
         <p>
-          Proudly founded by <strong>two Bajans</strong> 🇧🇧 who wanted the
+          Proudly founded by <strong>two Bajans</strong> who wanted the
           world to see Barbados the way locals do — one street corner at a
           time.
         </p>
