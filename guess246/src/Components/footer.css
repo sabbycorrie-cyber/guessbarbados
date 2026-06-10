@@ -1,0 +1,101 @@
+/* === Footer styles ===
+   Logo pinned bottom-left, link row bottom-right.
+   Modals reuse the app's .modal-backdrop / .modal — only the
+   footer-specific heading/body styles live here. */
+
+.site-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  pointer-events: none; /* don't block game clicks between items */
+  z-index: 50;
+}
+
+.site-footer > * {
+  pointer-events: auto;
+}
+
+.footer-logo {
+  height: 34px;
+  width: auto;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-links button {
+  background: none;
+  border: none;
+  padding: 6px 2px; /* generous tap target for phones */
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-links button:hover,
+.footer-links button:focus-visible {
+  color: #fff;
+}
+
+/* Heading row inside the reused .modal */
+.footer-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.footer-modal-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.footer-modal-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.footer-modal-close:hover,
+.footer-modal-close:focus-visible {
+  color: #fff;
+}
+
+.footer-modal-body {
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Small screens (iPhone 6 = 375px wide) */
+@media (max-width: 420px) {
+  .footer-logo {
+    height: 26px;
+  }
+  .footer-links {
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+}

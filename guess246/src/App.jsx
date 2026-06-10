@@ -7,6 +7,7 @@ import Login from "./Components/Login.jsx";
 import DifficultySelect from "./Components/DifficultySelect.jsx";
 import Game from "./Components/Game.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
+import Footer from "./Components/Footer.jsx";
 
 function App() {
   /* === Session state ===
@@ -85,6 +86,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Logo + info links, visible on every screen */}
+      <Footer />
     </div>
   );
 }
