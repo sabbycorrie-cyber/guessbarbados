@@ -94,10 +94,14 @@ export function saveScore({ name, score, difficulty, correct, rounds }) {
   }
   localStorage.setItem(KEY, JSON.stringify(kept));
 
-  // find where this game landed on the board
+  // find where this game landed on the local board
   const board = getLeaderboard(difficulty);
-  const rank = board.findIndex((e) => e.date === entry.date && e.name === entry.name);
-  return rank === -1 ? board.length : rank + 1;
+  const idx = board.findIndex((e) => e.date === entry.date && e.name === entry.name);
+  const rank = idx === -1 ? board.length : idx + 1;
+
+  // return the entry's date too, so the caller can highlight this exact
+  // run on the leaderboard (cloud rows round-trip the same date)
+  return { rank, date: entry.date };
 }
 
 /* === Personal best ===

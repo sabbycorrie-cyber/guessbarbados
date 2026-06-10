@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getStreetViewURL, hasStreetView } from "../Services/streetView.js";
 import { saveScore, getPersonalBest } from "../Services/leaderboard.js";
+import { backendConfigured, fetchScores } from "../Services/backend.js";
 import { track } from "../Services/analytics.js";
 import { PLACES, DIFFICULTY, placeLabel } from "../data/places.js";
 import Answers from "./Answers.jsx";
@@ -172,7 +173,7 @@ function Game({ user, difficulty, onExit }) {
   const finishGame = (finalScore, finalCorrect) => {
     const name = user?.username ?? "Guest";
     const previousBest = getPersonalBest(name, difficulty);
-    const rank = saveScore({
+    const { rank: localRank, date } = saveScore({
       name,
       score: finalScore,
       difficulty,
@@ -185,12 +186,25 @@ function Game({ user, difficulty, onExit }) {
       score: finalScore,
       correct: finalCorrect,
       rounds: cfg.rounds,
-      rank,
+      rank: localRank,
     });
     setIsPersonalBest(previousBest === null || finalScore > previousBest);
-    setFinalRank(rank);
-    setFinalDate(Date.now());
+    setFinalDate(date); // same timestamp the saved row carries, for highlighting
+    setFinalRank(localRank); // shown immediately; replaced by cloud rank below
     setPhase("over");
+
+    /* When the cloud is on, the real rank is across all players, not just
+       this device's seeded board. Count how many cloud scores beat this
+       one (+1) — independent of whether our just-saved row arrived yet. */
+    if (backendConfigured) {
+      fetchScores().then((rows) => {
+        if (!rows) return;
+        const better = rows.filter(
+          (e) => e.difficulty === difficulty && e.score > finalScore
+        ).length;
+        setFinalRank(better + 1);
+      });
+    }
   };
 
   /* Countdown timer */
