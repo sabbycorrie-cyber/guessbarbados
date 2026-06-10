@@ -198,7 +198,7 @@ body::before {
     linear-gradient(rgba(3, 11, 31, 0.55), rgba(3, 11, 31, 0.78)),
     url("./assets/intro-bg.png");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
 }
 
 .intro-card {
