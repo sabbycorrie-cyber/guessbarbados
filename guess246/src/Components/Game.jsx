@@ -4,6 +4,7 @@ shows the Street View photo, handles answers, the countdown
 timer, scoring (base + time bonus + streak bonus) and finally
 saves the result to the leaderboard. */
 import { useState, useEffect, useRef, useCallback } from "react";
+import { getStreetViewURL, hasStreetView } from "../Services/streetView.js";
 import { saveScore, getPersonalBest } from "../Services/leaderboard.js";
 import { PLACES, DIFFICULTY, placeLabel } from "../data/places.js";
 import Answers from "./Answers.jsx";
@@ -11,49 +12,6 @@ import Leaderboard from "./Leaderboard.jsx";
 
 /* How long the right/wrong reveal stays on screen between rounds */
 const REVEAL_MS = 1800;
-
-/* === Google Street View setup ===
-The key comes from .env in the project root:
-VITE_GOOGLE_API_KEY=your-key-here
-(Vite only exposes env vars prefixed with VITE_, and only reads
-   the file at startup — restart the dev server after changing it.) */
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-
-/* Pull coordinates out of a place entry, tolerating a couple of
-common field-name shapes (lat/lng, latitude/longitude). */
-const placeCoords = (place) => {
-const lat = place.lat ?? place.latitude;
-const lng = place.lng ?? place.lon ?? place.longitude;
-return `${lat},${lng}`;
-};
-
-/* Build the Street View Static API image URL for a place */
-const getStreetViewURL = (place, { fov = 90 } = {}) =>
-    `https://maps.googleapis.com/maps/api/streetview` +
-    `?size=600x400` +
-    `&location=${placeCoords(place)}` +
-    `&fov=${fov}` +
-    `&heading=${place.heading ?? 120}` +
-    `&pitch=0` +
-    `&key=${API_KEY}`;
-
-/* Check the (free) metadata endpoint to confirm imagery exists at
-this location before using it in a round. Fails open so a network
-hiccup never blocks the game. */
-const hasStreetView = async (place) => {
-    try {
-    const res = await fetch(
-        `https://maps.googleapis.com/maps/api/streetview/metadata` +
-        `?location=${placeCoords(place)}` +
-        `&radius=100` +
-        `&key=${API_KEY}`
-    );
-    const data = await res.json();
-    return data.status === "OK";
-    } catch {
-    return true;
-    }
-};
 
 function Game({ user, difficulty, onExit }) {
   /* Rules + location pool for the chosen difficulty */
