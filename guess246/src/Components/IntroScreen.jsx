@@ -8,7 +8,7 @@ function IntroScreen({ onStart, onShowLeaderboard }) {
         <span className="chip">🇧🇧 De Ultimate Bajan Road Test</span>
 
         <h1 className="intro-title">
-          Guess<span className="title-gold">Barbados</span>
+          Guess<span className="title-gold">246</span>
         </h1>
 
         <p className="intro-note">
