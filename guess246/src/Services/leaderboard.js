@@ -1,7 +1,9 @@
 /* === Leaderboard service ===
-   Stores scores in localStorage for now. All reads/writes go through
-   this file, so swapping in a real backend (Firebase/Supabase) later
-   only means changing the functions below. */
+   Stores scores in localStorage (what players see), and mirrors
+   every finished game to the cloud when Supabase is configured
+   (what the admin dashboard sees) — see Services/backend.js. */
+
+import { sendScore } from "./backend.js";
 
 /* === Storage settings === */
 const KEY = "gb_leaderboard_v1";
@@ -78,6 +80,7 @@ export function saveScore({ name, score, difficulty, correct, rounds }) {
   const entry = { name, score, difficulty, correct, rounds, date: Date.now() };
   const all = readAll();
   all.push(entry);
+  sendScore(entry); // cloud mirror for the admin dashboard
 
   // keep only the best entries per difficulty so the list never grows forever
   const kept = [];
