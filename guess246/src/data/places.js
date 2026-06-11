@@ -27,7 +27,7 @@ export const PLACES = {
     { street: "Hastings Main Road", parish: "Christ Church", lat: 13.0716, lon: -59.599, heading: 120 },
     { street: "Worthing Main Road", parish: "Christ Church", lat: 13.0710548, lon: -59.5809804, heading: 92.36, pitch: -2.36 },
     { street: "Sunset Crest", parish: "St. James", lat: 13.183, lon: -59.637, heading: 340 },
-    { street: "Black Rock Main Road", parish: "St. Michael", lat: 13.1245, lon: -59.628, heading: 30 },
+    { street: "Black Rock Main Road", parish: "St. Michael", lat: 13.1299553, lon: -59.6323977, heading: 284.86, pitch: 1.27 },
     { street: "Eagle Hall", parish: "St. Michael", lat: 13.106, lon: -59.621, heading: 290 },
     { street: "Six Cross Roads", parish: "St. Philip", lat: 13.0936, lon: -59.4757, heading: 60 },
     { street: "Gun Hill", parish: "St. George", lat: 13.1419487, lon: -59.5556811, heading: 342.45, pitch: 0 },
