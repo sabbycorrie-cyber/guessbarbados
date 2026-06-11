@@ -30,7 +30,7 @@ export const PLACES = {
     { street: "Sunset Crest", parish: "St. James", lat: 13.183, lon: -59.637, heading: 340 },
     { street: "Black Rock Main Road", parish: "St. Michael", lat: 13.1299553, lon: -59.6323977, heading: 284.86, pitch: 1.27 },
     { street: "Eagle Hall", parish: "St. Michael", lat: 13.106, lon: -59.621, heading: 290 },
-    { street: "Six Cross Roads", parish: "St. Philip", lat: 13.0936, lon: -59.4757, heading: 60 },
+    { street: "Six Cross Roads", parish: "St. Philip", lat: 13.1178061, lon: -59.4766441, heading: 132.81, pitch: -4 },
     { street: "Gun Hill", parish: "St. George", lat: 13.1419487, lon: -59.5556811, heading: 342.45, pitch: 0 },
     { street: "Highway 2A", parish: "St. Thomas", lat: 13.166, lon: -59.607, heading: 15 },
     { street: "Mile and a Quarter", parish: "St. Peter", lat: 13.238, lon: -59.623, heading: 320 },
