@@ -52,6 +52,7 @@ export const PLACES = {
     { street: "Pie Corner", parish: "St. Lucy", lat: 13.321, lon: -59.595, heading: 270 },
     { street: "Dukes Hill", parish: "St. Thomas", lat: 13.1821713, lon: -59.5965515, heading: 89.63, pitch: 2.57 },
     { street: "St. Swithins", parish: "St. Lucy", lat: 13.3181512, lon: -59.6237742, heading: 100, pitch: 0 },
+    { street: "Ellerton", parish: "St. George", lat: 13.1322844, lon: -59.5376777, heading: 83.97, pitch: 2.01 },
   ],
 };
 
