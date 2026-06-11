@@ -45,7 +45,7 @@ export const PLACES = {
     { street: "Crane Beach Road", parish: "St. Philip", lat: 13.099, lon: -59.449, heading: 160 },
     { street: "Checker Hall", parish: "St. Lucy", lat: 13.311, lon: -59.638, heading: 200 },
     { street: "Hillaby", parish: "St. Thomas", lat: 13.203, lon: -59.587, heading: 310 },
-    { street: "Four Roads", parish: "St. John", lat: 13.172, lon: -59.49, heading: 230 },
+    { street: "Four Roads", parish: "St. John", lat: 13.1700743, lon: -59.5220727, heading: 247.86, pitch: -0.15 },
     { street: "Shorey Village", parish: "St. Andrew", lat: 13.23, lon: -59.564, heading: 35 },
     { street: "Pie Corner", parish: "St. Lucy", lat: 13.321, lon: -59.595, heading: 270 },
   ],
