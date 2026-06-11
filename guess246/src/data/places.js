@@ -38,7 +38,7 @@ export const PLACES = {
   ],
 
   hard: [
-    { street: "East Coast Road, Bathsheba", parish: "St. Joseph", lat: 13.2118, lon: -59.525, heading: 20 },
+    { street: "Bathsheba", parish: "St. Joseph", lat: 13.2106736, lon: -59.5170035, heading: 326.46, pitch: -6.8 },
     { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.247, lon: -59.579, heading: 45 },
     { street: "North Point Road", parish: "St. Lucy", lat: 13.337, lon: -59.61, heading: 350 },
     { street: "Codrington College Road", parish: "St. John", lat: 13.174, lon: -59.474, heading: 140 },
