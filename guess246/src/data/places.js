@@ -58,6 +58,7 @@ export const PLACES = {
     { street: "Three Houses", parish: "St. Philip", lat: 13.1584531, lon: -59.4596342, heading: 193.13, pitch: -17.16 },
     { street: "Skeete's Bay", parish: "St. Philip", lat: 13.1684372, lon: -59.4483504, heading: 48.12, pitch: 0 },
     { street: "Sherman Hall Moon Fort", parish: "St. Peter", lat: 13.2742861, lon: -59.6466728, heading: 212.85, pitch: -1.38 },
+    { street: "Thunder Bay", parish: "St. James", lat: 13.2198555, lon: -59.6415461, heading: 11.16, pitch: 0.73 },
   ],
 };
 
