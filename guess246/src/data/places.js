@@ -61,6 +61,7 @@ export const PLACES = {
     { street: "Sherman Hall Moon Fort", parish: "St. Peter", lat: 13.2742861, lon: -59.6466728, heading: 212.85, pitch: -1.38 },
     { street: "Thunder Bay", parish: "St. James", lat: 13.2198555, lon: -59.6415461, heading: 11.16, pitch: 0.73 },
     { street: "Inch Marlow", parish: "Christ Church", lat: 13.0530398, lon: -59.5054981, heading: 151.41, pitch: -4.85 },
+    { street: "Chancery Lane", parish: "Christ Church", lat: 13.0600115, lon: -59.507572, heading: 258.84, pitch: -8.67 },
   ],
 };
 
