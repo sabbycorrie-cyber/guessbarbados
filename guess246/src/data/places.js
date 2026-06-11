@@ -37,6 +37,7 @@ export const PLACES = {
     { street: "Errol Barrow Highway", parish: "Christ Church", lat: 13.0863373, lon: -59.5772122, heading: 15.91, pitch: 0.91 },
     { street: "Bathsheba", parish: "St. Joseph", lat: 13.2106736, lon: -59.5170035, heading: 326.46, pitch: -6.8 },
     { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.2735703, lon: -59.584944, heading: 121.69, pitch: -6.56 },
+    { street: "Farley Hill", parish: "St. Peter", lat: 13.2660748, lon: -59.5953603, heading: 140.86, pitch: 0 },
   ],
 
   hard: [
