@@ -15,7 +15,7 @@ export const PLACES = {
     { street: "Carlisle Bay", parish: "St. Michael", lat: 13.086209, lon: -59.6092, heading: 253.45, pitch: 12.04 },
     { street: "Rockley", parish: "Christ Church", lat: 13.0746696, lon: -59.5891528, heading: 139.32 },
     { street: "Oistins Main Road", parish: "Christ Church", lat: 13.0639, lon: -59.5426, heading: 100 },
-    { street: "St. Lawrence Gap", parish: "Christ Church", lat: 13.0655, lon: -59.578, heading: 90 },
+    { street: "St. Lawrence Gap", parish: "Christ Church", lat: 13.0689183, lon: -59.575756, heading: 126.84, pitch: 3.98 },
     { street: "Queen Street, Speightstown", parish: "St. Peter", lat: 13.2503, lon: -59.6438, heading: 10 },
     { street: "Warrens", parish: "St. Michael", lat: 13.128, lon: -59.612, heading: 200 },
   ],
