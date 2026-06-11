@@ -42,7 +42,7 @@ export const PLACES = {
     { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.247, lon: -59.579, heading: 45 },
     { street: "North Point Road", parish: "St. Lucy", lat: 13.337, lon: -59.61, heading: 350 },
     { street: "Codrington College Road", parish: "St. John", lat: 13.174, lon: -59.474, heading: 140 },
-    { street: "Martin's Bay", parish: "St. John", lat: 13.166, lon: -59.467, heading: 80 },
+    { street: "Martin's Bay", parish: "St. John", lat: 13.1979994, lon: -59.495814, heading: 87.44, pitch: 0 },
     { street: "Long Bay, Sam Lord's", parish: "St. Philip", lat: 13.106, lon: -59.435, heading: 110 },
     { street: "Crane Beach Road", parish: "St. Philip", lat: 13.099, lon: -59.449, heading: 160 },
     { street: "Checker Hall", parish: "St. Lucy", lat: 13.311, lon: -59.638, heading: 200 },
