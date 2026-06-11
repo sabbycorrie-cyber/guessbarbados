@@ -21,6 +21,7 @@ export const PLACES = {
     { street: "Rihanna Drive", parish: "St. Michael", lat: 13.1088517, lon: -59.6219301, heading: 130, pitch: 2.79 },
     { street: "National Heroes Square", parish: "St. Michael", lat: 13.0966807, lon: -59.6140958, heading: 0, pitch: 0 },
     { street: "Independence Square", parish: "St. Michael", lat: 13.0953075, lon: -59.6138237, heading: 60.03, pitch: 0 },
+    { street: "Kensington Oval", parish: "St. Michael", lat: 13.1060053, lon: -59.623835, heading: 110.19, pitch: 1.79 },
   ],
 
   medium: [
