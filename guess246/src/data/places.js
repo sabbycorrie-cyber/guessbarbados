@@ -47,7 +47,7 @@ export const PLACES = {
 
   hard: [
     { street: "North Point Road", parish: "St. Lucy", lat: 13.337, lon: -59.61, heading: 350 },
-    { street: "Codrington College Road", parish: "St. John", lat: 13.174, lon: -59.474, heading: 140 },
+    { street: "Codrington College", parish: "St. John", lat: 13.17503821082384, lon: -59.47544588454794, heading: 185, pitch: 2 },
     { street: "Martin's Bay", parish: "St. John", lat: 13.1979994, lon: -59.495814, heading: 87.44, pitch: 0 },
     { street: "Sam Lord's", parish: "St. Philip", lat: 13.1254421, lon: -59.4295372, heading: 135.75, pitch: -5 },
     { street: "Crane Beach", parish: "St. Philip", lat: 13.1075775, lon: -59.4427507, heading: 254.31, pitch: -2.76 },
