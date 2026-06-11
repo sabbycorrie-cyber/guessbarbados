@@ -54,6 +54,7 @@ export const PLACES = {
     { street: "St. Swithins", parish: "St. Lucy", lat: 13.3181512, lon: -59.6237742, heading: 100, pitch: 0 },
     { street: "Ellerton", parish: "St. George", lat: 13.1322844, lon: -59.5376777, heading: 83.97, pitch: 2.01 },
     { street: "Three Houses", parish: "St. Philip", lat: 13.1584531, lon: -59.4596342, heading: 193.13, pitch: -17.16 },
+    { street: "Skeete's Bay", parish: "St. Philip", lat: 13.1684372, lon: -59.4483504, heading: 48.12, pitch: 0 },
   ],
 };
 
