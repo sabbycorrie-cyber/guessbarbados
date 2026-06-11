@@ -39,7 +39,7 @@ export const PLACES = {
   ],
 
   hard: [
-    { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.247, lon: -59.579, heading: 45 },
+    { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.2735703, lon: -59.584944, heading: 121.69, pitch: -6.56 },
     { street: "North Point Road", parish: "St. Lucy", lat: 13.337, lon: -59.61, heading: 350 },
     { street: "Codrington College Road", parish: "St. John", lat: 13.174, lon: -59.474, heading: 140 },
     { street: "Martin's Bay", parish: "St. John", lat: 13.1979994, lon: -59.495814, heading: 87.44, pitch: 0 },
