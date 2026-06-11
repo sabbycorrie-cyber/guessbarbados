@@ -34,6 +34,7 @@ export const PLACES = {
     { street: "University Hill, Cave Hill", parish: "St. Michael", lat: 13.134, lon: -59.63, heading: 250 },
     { street: "Silver Sands", parish: "Christ Church", lat: 13.046, lon: -59.53, heading: 250 },
     { street: "Highway 6, Balls", parish: "Christ Church", lat: 13.0876228, lon: -59.5196682, heading: 59.33, pitch: 0.74 },
+    { street: "Errol Barrow Highway", parish: "Christ Church", lat: 13.0863373, lon: -59.5772122, heading: 15.91, pitch: 0.91 },
   ],
 
   hard: [
