@@ -11,7 +11,7 @@ export const PLACES = {
     { street: "Roebuck Street", parish: "St. Michael", lat: 13.1024068, lon: -59.6103241, heading: 263.31, pitch: -6.27 },
     { street: "Upper Collymore Rock", parish: "St. Michael", lat: 13.0935766, lon: -59.5959958, heading: 79.37 },
     { street: "Spring Garden Highway", parish: "St. Michael", lat: 13.1166232, lon: -59.6267809, heading: 204.86 },
-    { street: "Holetown", parish: "St. James", lat: 13.1911512, lon: -59.6382856, heading: 146.49 },
+    { street: "Holetown", parish: "St. James", lat: 13.1866016, lon: -59.6365115, heading: 33.72, pitch: -5 },
     { street: "Carlisle Bay", parish: "St. Michael", lat: 13.086209, lon: -59.6092, heading: 253.45, pitch: 12.04 },
     { street: "Rockley", parish: "Christ Church", lat: 13.0746696, lon: -59.5891528, heading: 139.32 },
     { street: "Oistins Main Road", parish: "Christ Church", lat: 13.0639, lon: -59.5426, heading: 100 },
