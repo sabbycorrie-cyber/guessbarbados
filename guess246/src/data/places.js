@@ -62,6 +62,7 @@ export const PLACES = {
     { street: "Thunder Bay", parish: "St. James", lat: 13.2198555, lon: -59.6415461, heading: 11.16, pitch: 0.73 },
     { street: "Inch Marlow", parish: "Christ Church", lat: 13.0530398, lon: -59.5054981, heading: 151.41, pitch: -4.85 },
     { street: "Chancery Lane", parish: "Christ Church", lat: 13.0600115, lon: -59.507572, heading: 258.84, pitch: -8.67 },
+    { street: "Foul Bay Rd", parish: "St. Philip", lat: 13.0953951, lon: -59.4559864, heading: 75.86, pitch: -1.94 },
   ],
 };
 
