@@ -27,7 +27,7 @@ export const PLACES = {
     { street: "Black Rock Main Road", parish: "St. Michael", lat: 13.1245, lon: -59.628, heading: 30 },
     { street: "Eagle Hall", parish: "St. Michael", lat: 13.106, lon: -59.621, heading: 290 },
     { street: "Six Cross Roads", parish: "St. Philip", lat: 13.0936, lon: -59.4757, heading: 60 },
-    { street: "Gun Hill", parish: "St. George", lat: 13.123, lon: -59.56, heading: 180 },
+    { street: "Gun Hill", parish: "St. George", lat: 13.1419487, lon: -59.5556811, heading: 342.45, pitch: 0 },
     { street: "Highway 2A", parish: "St. Thomas", lat: 13.166, lon: -59.607, heading: 15 },
     { street: "Mile and a Quarter", parish: "St. Peter", lat: 13.238, lon: -59.623, heading: 320 },
     { street: "Belleplaine", parish: "St. Andrew", lat: 13.2437, lon: -59.556, heading: 70 },
