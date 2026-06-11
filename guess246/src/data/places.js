@@ -20,6 +20,7 @@ export const PLACES = {
     { street: "Warrens", parish: "St. James", lat: 13.1426207, lon: -59.6101924, heading: 53.72, pitch: 1.28 },
     { street: "Rihanna Drive", parish: "St. Michael", lat: 13.1088517, lon: -59.6219301, heading: 130, pitch: 2.79 },
     { street: "National Heroes Square", parish: "St. Michael", lat: 13.0966807, lon: -59.6140958, heading: 0, pitch: 0 },
+    { street: "Independence Square", parish: "St. Michael", lat: 13.0953075, lon: -59.6138237, heading: 60.03, pitch: 0 },
   ],
 
   medium: [
