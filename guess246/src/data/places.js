@@ -17,7 +17,7 @@ export const PLACES = {
     { street: "Oistins Main Road", parish: "Christ Church", lat: 13.0639, lon: -59.5426, heading: 100 },
     { street: "St. Lawrence Gap", parish: "Christ Church", lat: 13.0689183, lon: -59.575756, heading: 126.84, pitch: 3.98 },
     { street: "Queen Street, Speightstown", parish: "St. Peter", lat: 13.2503, lon: -59.6438, heading: 10 },
-    { street: "Warrens", parish: "St. Michael", lat: 13.128, lon: -59.612, heading: 200 },
+    { street: "Warrens", parish: "St. James", lat: 13.1426207, lon: -59.6101924, heading: 53.72, pitch: 1.28 },
     { street: "Rihanna Drive", parish: "St. Michael", lat: 13.1088517, lon: -59.6219301, heading: 130, pitch: 2.79 },
   ],
 
