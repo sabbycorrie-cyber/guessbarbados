@@ -36,10 +36,10 @@ export const PLACES = {
     { street: "Highway 6, Balls", parish: "Christ Church", lat: 13.0876228, lon: -59.5196682, heading: 59.33, pitch: 0.74 },
     { street: "Errol Barrow Highway", parish: "Christ Church", lat: 13.0863373, lon: -59.5772122, heading: 15.91, pitch: 0.91 },
     { street: "Bathsheba", parish: "St. Joseph", lat: 13.2106736, lon: -59.5170035, heading: 326.46, pitch: -6.8 },
+    { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.2735703, lon: -59.584944, heading: 121.69, pitch: -6.56 },
   ],
 
   hard: [
-    { street: "Cherry Tree Hill", parish: "St. Andrew", lat: 13.2735703, lon: -59.584944, heading: 121.69, pitch: -6.56 },
     { street: "North Point Road", parish: "St. Lucy", lat: 13.337, lon: -59.61, heading: 350 },
     { street: "Codrington College Road", parish: "St. John", lat: 13.174, lon: -59.474, heading: 140 },
     { street: "Martin's Bay", parish: "St. John", lat: 13.1979994, lon: -59.495814, heading: 87.44, pitch: 0 },
