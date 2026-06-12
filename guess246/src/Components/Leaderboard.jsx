@@ -94,10 +94,7 @@ function Leaderboard({ initialTab = "easy", currentUser, highlightDate, onClose 
                 className={`leaderboard-row ${isYou ? "is-you" : ""}`}
               >
                 <span className="rank">{MEDALS[i] ?? i + 1}</span>
-                <span className="player">
-                  {e.name}
-                  {e.name === currentUser && <em> (you)</em>}
-                </span>
+                <span className="player">{e.name}</span>
                 <span className="accuracy">
                   {e.correct}/{e.rounds}
                 </span>

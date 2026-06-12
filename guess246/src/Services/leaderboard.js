@@ -3,11 +3,12 @@
    every finished game to the cloud when Supabase is configured
    (what the admin dashboard sees) — see Services/backend.js. */
 
-import { sendScore } from "./backend.js";
+import { sendScore, backendConfigured, fetchScores } from "./backend.js";
 
 /* === Storage settings === */
 const KEY = "gb_leaderboard_v1";
 const MAX_ENTRIES_PER_DIFFICULTY = 50;
+const GUEST_NUMS_KEY = "gb_guest_nums";
 
 /* === Seed data ===
    Dummy Bajan players shown the first time the game runs, so the
@@ -109,4 +110,71 @@ export function saveScore({ name, score, difficulty, correct, rounds }) {
 export function getPersonalBest(name, difficulty) {
   const scores = getLeaderboard(difficulty).filter((e) => e.name === name);
   return scores.length ? scores[0].score : null;
+}
+
+/* === Guest names ===
+   Each guest gets a unique "Guest (N)" so they're told apart on the
+   leaderboard. N is random in 1-1000; once every number in that range
+   is taken it draws from 1000-10000 instead. Checks the cloud (when
+   configured) plus local data so numbers don't collide. */
+
+/* Guest numbers already seen in local data + assigned on this device */
+function localGuestNumbers() {
+  const used = new Set();
+  for (const diff of ["easy", "medium", "hard"]) {
+    for (const e of getLeaderboard(diff)) {
+      const m = /^Guest \((\d+)\)$/.exec(e.name);
+      if (m) used.add(Number(m[1]));
+    }
+  }
+  try {
+    for (const n of JSON.parse(localStorage.getItem(GUEST_NUMS_KEY)) ?? []) used.add(n);
+  } catch {
+    /* ignore */
+  }
+  return used;
+}
+
+export async function generateGuestName() {
+  const used = localGuestNumbers();
+
+  // also avoid numbers already taken by guests across all players
+  if (backendConfigured) {
+    const rows = await fetchScores();
+    if (rows) {
+      for (const r of rows) {
+        const m = /^Guest \((\d+)\)$/.exec(r.name);
+        if (m) used.add(Number(m[1]));
+      }
+    }
+  }
+
+  const pickFree = (min, max) => {
+    for (let i = 0; i < 100; i++) {
+      const n = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (!used.has(n)) return n;
+    }
+    for (let n = min; n <= max; n++) if (!used.has(n)) return n; // range full-ish
+    return null;
+  };
+
+  // how many of 1-1000 are taken — once it's full, move to the wider range
+  let lowTaken = 0;
+  for (const n of used) if (n >= 1 && n <= 1000) lowTaken++;
+
+  const num =
+    (lowTaken >= 1000 ? pickFree(1000, 10000) : pickFree(1, 1000)) ??
+    pickFree(1000, 10000) ??
+    Math.floor(Math.random() * 9000 + 1000);
+
+  // remember on this device so we don't reuse it before it reaches the board
+  try {
+    const arr = JSON.parse(localStorage.getItem(GUEST_NUMS_KEY)) ?? [];
+    arr.push(num);
+    localStorage.setItem(GUEST_NUMS_KEY, JSON.stringify(arr.slice(-2000)));
+  } catch {
+    /* ignore */
+  }
+
+  return `Guest (${num})`;
 }

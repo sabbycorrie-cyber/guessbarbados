@@ -4,6 +4,7 @@
 import { useState } from "react";
 import LoadingScreen from "./LoadingScreen";
 import { track, identify } from "../Services/analytics.js";
+import { generateGuestName } from "../Services/leaderboard.js";
 
 /* Accounts are stored as gb_user_<username> so they can't
    collide with other localStorage keys */
@@ -61,10 +62,12 @@ function Login({ onLogin }) {
     }
   };
 
-  /* Guest mode — no account, scores save under "Guest" */
-  const playAsGuest = () => {
-    track("guest_play", { player: "Guest" });
-    finishLogin({ username: "Guest", guest: true });
+  /* Guest mode — no account. Each guest gets a unique "Guest (N)" name
+     so they're told apart on the leaderboard. */
+  const playAsGuest = async () => {
+    const guestName = await generateGuestName();
+    track("guest_play", { player: guestName });
+    finishLogin({ username: guestName, guest: true });
   };
 
   if (loading) {
